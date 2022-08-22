@@ -1,4 +1,3 @@
- 
 const form = document.querySelector(".top-banner form");
 const input = document.querySelector(".top-banner input");
 const msg = document.querySelector(".top-banner .msg");
@@ -6,7 +5,7 @@ const list = document.querySelector(".ajax-section .cities");
 
 const apiKey = "b579ff164cd37d0bc4040226c3e30820";
 
-form.addEventListener("submit", e => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
   let inputVal = input.value;
 
@@ -15,7 +14,7 @@ form.addEventListener("submit", e => {
   const listItemsArray = Array.from(listItems);
 
   if (listItemsArray.length > 0) {
-    const filteredArray = listItemsArray.filter(el => {
+    const filteredArray = listItemsArray.filter((el) => {
       let content = "";
       //athens,gr
       if (inputVal.includes(",")) {
@@ -49,12 +48,13 @@ form.addEventListener("submit", e => {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${apiKey}&units=metric`;
 
   fetch(url)
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       const { main, name, sys, weather } = data;
-      const icon = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${
-        weather[0]["icon"]
-      }.svg`;
+      //   const icon = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${
+      //     weather[0]["icon"]
+      //   }.svg`;
+      const icon = `https://openweathermap.org/img/wn/${weather[0]["icon"]}@2x.png`;
 
       const li = document.createElement("li");
       li.classList.add("city");
